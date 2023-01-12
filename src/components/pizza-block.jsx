@@ -1,11 +1,13 @@
-// function PizzaBlock ({id, category, imageUrl, price, rating, sizes, title, types}) {
-  function PizzaBlock({pizza}) {
+import React, {useState} from "react";
+
+function PizzaBlock({pizza}) {
   const typeDough = {
     0: "тонкое",
     1: "традиционное"
   };
   const {id, category, imageUrl, price, rating, sizes, title, types} = pizza;
 
+  const [pizzaCount, setPizzaCount] = useState(0)
   
   return (
     
@@ -32,7 +34,7 @@
     </div>
     <div className='pizza-block__bottom'>
       <div className='pizza-block__price'>от {price} ₽</div>
-      <div className='button button--outline button--add'>
+      <button className='button button--outline button--add' onClick={()=>setPizzaCount(pizzaCount + 1)}>
         <svg
           width='12'
           height='12'
@@ -46,8 +48,8 @@
           />
         </svg>
         <span>Добавить</span>
-        <i>2</i>
-      </div>
+        {pizzaCount > 0 ? <i>{pizzaCount}</i> : null}
+      </button>
     </div>
   </div>
   )

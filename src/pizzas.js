@@ -1,4 +1,4 @@
-const PIZZAS = [
+const pizzas = [
   {
     id: 0,
     imageUrl:
@@ -111,4 +111,4 @@ const PIZZAS = [
   },
 ];
 
-export default PIZZAS;
+export default pizzas;

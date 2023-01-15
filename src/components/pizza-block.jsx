@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 
-function PizzaBlock({pizza}) {
+function PizzaBlock({id, category, imageUrl, price, rating, sizes, title, types}) {
   const typeDough = {
     0: "тонкое",
     1: "традиционное"
   };
-  const {id, category, imageUrl, price, rating, sizes, title, types} = pizza;
 
   const [pizzaCount, setPizzaCount] = useState(0)
+  const [sizeActive, setSizeActive] = useState(26)
+  const [typeActive, setTypeActive] = useState(0)
   
   return (
     
@@ -20,13 +21,26 @@ function PizzaBlock({pizza}) {
     <h4 className='pizza-block__title'>{title}</h4>
     <div className='pizza-block__selector'>
       <ul>
-        {types.map((type, i) => {return(<li className={i === 0 ? 'active' : ''} key={id + type}>
+        {types.map((type, i) => {
+          if (typeActive === 0 && typeActive !== type && i === 0) setTypeActive(type)
+          return(<li 
+          className={type === typeActive ? 'active' : ''} 
+          key={id + type}
+          onClick={() => {if (typeActive !== type)  setTypeActive(type)}}
+          >
           {typeDough[type]}
           </li>)}
           )}
       </ul>
       <ul>
-        {sizes.map((size, i) => {return(<li className={i === 0 ? 'active' : ''} key={id + size}>
+        {sizes.map((size, i) => {
+          
+          if (sizeActive === 26 && sizeActive !== size && i === 0) setSizeActive(size)
+          return(<li 
+          className={size === sizeActive ? 'active' : ''} 
+          key={id + size}
+          onClick={() => {if (sizeActive !== size) setSizeActive(size)}}
+          >
           {size} см
           </li>)}
           )}
